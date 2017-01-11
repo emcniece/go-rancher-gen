@@ -184,6 +184,12 @@ func (r *runner) processTemplate(funcs template.FuncMap, t Template) error {
 		}
 	}
 
+	if t.NotifyLbl != "" {
+		if err := notify(t.NotifyLbl, t.NotifyOutput); err != nil {
+			return fmt.Errorf("Notify label failed: %v", err)
+		}
+	}
+
 	return nil
 }
 
